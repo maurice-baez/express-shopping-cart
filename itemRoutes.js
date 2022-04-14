@@ -45,11 +45,11 @@ router.patch("/:name", function (req, res) {
 
   for (let item of db.items) {
     if (item.name === curr_item) {
-      item.name = req.body.name;
-      item.price = req.body.price;
+      item.name = req.body.name || item.name;
+      item.price = req.body.price || item.price;
       return res.json({ updated: item });
-    } else {
-      throw new NotFoundError()
+      } else {
+      throw new NotFoundError();
     }
   }
 })
