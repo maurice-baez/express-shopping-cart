@@ -21,7 +21,7 @@ afterEach(function() {
 test("Returns list of shopping cart items", async function () {
 
   const resp = await request(app).get("/items");
-  debugger;
+
   expect(resp.body).toEqual({items : [candy, chocolate, cheetos]});
 });
 
@@ -30,20 +30,19 @@ test("Adds item to the shopping cart", async function(){
     const resp = await request(app)
       .post("/items")
       .send({name: "Sour patch kids", price: 5.99});
-  debugger;
+
     expect(resp.statusCode).toEqual(201);
     expect(resp.body).toEqual({added: {name: "Sour patch kids", price: 5.99} });
 })
 
 describe("PATCH /items/:name", function () {
   test("Updates item in the shopping cart", async function () {
-    console.log(candy.name)
+
+
     const resp = await request(app)
-      .patch(`/items/${candy.name}`)
+      .patch(`/items/${cheetos.name}`)
       .send({ name: "updateTest", price: 1001 });
-    debugger;
-    console.log(chocolate.name)
-    console.log(candy.name)
+      debugger;
     expect(resp.body).toEqual({ updated: { name: "updateTest", price: 1001 } });
   });
 })
