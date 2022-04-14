@@ -21,7 +21,7 @@ router.get("/", function(req, res){
 /** Add an item to the shopping cart */
 router.post("/", function (req, res) {
   db.items.push(req.body);
-  return res.json({added: req.body})
+  return res.status(201).json({added: req.body})
 })
 
 
